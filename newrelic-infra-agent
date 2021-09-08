@@ -1,0 +1,7 @@
+$LICENSE_KEY="de5b6cfe6ebaf1198c8629038ac1ef4c2c90NRAL"; `
+
+(New-Object System.Net.WebClient).DownloadFile("https://download.newrelic.com/infrastructure_agent/windows/newrelic-infra.msi", "$env:TEMP\newrelic-infra.msi"); `
+
+msiexec.exe /qn /i "$env:TEMP\newrelic-infra.msi" GENERATE_CONFIG=true LICENSE_KEY="de5b6cfe6ebaf1198c8629038ac1ef4c2c90NRAL" | Out-Null; `
+
+net start newrelic-infra
