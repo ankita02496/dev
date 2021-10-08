@@ -1,0 +1,47 @@
+helm install newrelic-bundle newrelic/nri-bundle 
+ --set global.licenseKey=4ba6d9ad5880c1da9326ff1fca3706998922NRAL 
+ --set global.cluster=ncfastrosa
+ --namespace=default 
+ --set newrelic-infrastructure.privileged=true 
+ --set ksm.enabled=true 
+ --set prometheus.enabled=true 
+ --set kubeEvents.enabled=true 
+ --set logging.enabled=true
+ 
+ 
+ helm install newrelic/newrelic-infrastructure --set licenseKey=4ba6d9ad5880c1da9326ff1fca3706998922NRAL --set cluster=kpmgocp
+ 
+ helm upgrade --install newrelic newrelic/nri-bundle --dry-run --debug --set global.licenseKey=4ba6d9ad5880c1da9326ff1fca3706998922NRAL 
+--set global.cluster=K8S_CLUSTER_NAME \
+--set infrastructure.enabled=true \
+--set prometheus.enabled=true \
+--set webhook.enabled=true \
+--set ksm.enabled=false \
+--set kubeEvents.enabled=true \
+--set logging.enabled=true
+
+api-kpmgocp-stotenrhos-com:6443
+
+helm upgrade --install newrelic newrelic/nri-bundle \
+--dry-run \
+--debug \
+--set global.licenseKey=YOUR_NEW_RELIC_LICENSE_KEY \
+--set global.cluster=K8S_CLUSTER_NAME \
+--set infrastructure.enabled=true \
+--set prometheus.enabled=true \
+--set webhook.enabled=true \
+--set ksm.enabled=false \
+--set kubeEvents.enabled=true \
+--set logging.enabled=true
+
+ kubectl config set-cluster api-kpmgocp-stotenrhos-com:6443 --insecure-skip-tls-verify=true
+ 
+helm upgrade --install newrelic newrelic/nri-bundle 
+--set global.licenseKey=4ba6d9ad5880c1da9326ff1fca3706998922NRAL 
+--set global.cluster=api-kpmgocp-stotenrhos-com:6443
+--set infrastructure.enabled=true 
+--set prometheus.enabled=true 
+--set webhook.enabled=true 
+--set ksm.enabled=false 
+--set kubeEvents.enabled=true 
+--set logging.enabled=true
